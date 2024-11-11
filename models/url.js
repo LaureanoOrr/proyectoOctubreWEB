@@ -3,14 +3,14 @@ const { Schema } = mongoose;
 const urlSchema = new Schema({
   origin: {
     type: String,
-    required: true,
     unique: true,
+    required: true,
   },
   shortURL: {
     type: String,
-    required: true,
     unique: true,
+    required: true,
   },
 });
-const Url = mongoose.model("url", urlSchema);
-module.exports = url;
+const Url = mongoose.model("Url", urlSchema);
+module.exports = Url;
