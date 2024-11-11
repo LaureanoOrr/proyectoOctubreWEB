@@ -12,5 +12,5 @@ const urlSchema = new Schema({
     unique: true,
   },
 });
-const Url = mongoose.model("Url", urlSchema);
-module.exports = Url;
+const Url = mongoose.model("url", urlSchema);
+module.exports = url;
