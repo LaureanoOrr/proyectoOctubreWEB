@@ -34,6 +34,17 @@ const eliminarUrl = async (req, res) => {
   }
 };
 
+const editarUrl = async (req, res) => {
+  const { id } = req.params;
+  const { origin } = req.body;
+  try {
+    await Url.findByIdAndUpdate(id, { origin: origin });
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const editarUrlForm = async (req, res) => {
   const { id } = req.params;
   try {
@@ -44,9 +55,23 @@ const editarUrlForm = async (req, res) => {
     res.send("algo falló");
   }
 };
+
+//Copiado. Preguntarle al profe.
+const redireccionamiento = async (req, res) => {
+  const { shortURL } = req.params;
+  try {
+    const urlDB = await Url.findOne({ shortURL: shortURL });
+    res.redirect(urlDB.origin);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   leerUrls,
   agregarUrl,
   eliminarUrl,
   editarUrlForm,
+  editarUrl,
+  redireccionamiento,
 };
