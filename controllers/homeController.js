@@ -7,7 +7,7 @@ const leerUrls = async (req, res) => {
     res.render("home", { urls: urls });
   } catch (error) {
     console.log(error);
-    res.send("algo salio mal");
+    res.send("Error.");
   }
 };
 
@@ -19,11 +19,34 @@ const agregarUrl = async (req, res) => {
     res.redirect("/");
   } catch (error) {
     console.log(error);
-    res.send("algo fallo");
+    res.send("Error.");
   }
 };
 
+const eliminarUrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Url.findByIdAndDelete(id);
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+    res.send("algo falló");
+  }
+};
+
+const editarUrlForm = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const urlDB = await Url.findById(id).lean();
+    res.render("home", { urlDB });
+  } catch (error) {
+    console.log(error);
+    res.send("algo falló");
+  }
+};
 module.exports = {
   leerUrls,
   agregarUrl,
+  eliminarUrl,
+  editarUrlForm,
 };
