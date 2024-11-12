@@ -52,7 +52,7 @@ const editarUrlForm = async (req, res) => {
     res.render("home", { urlDB });
   } catch (error) {
     console.log(error);
-    res.send("algo falló");
+    res.send("Error.");
   }
 };
 
